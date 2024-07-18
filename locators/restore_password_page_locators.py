@@ -1,0 +1,1 @@
+BUTTON_RESTORE = ('xpath', '//button[text()="Восстановить"]')

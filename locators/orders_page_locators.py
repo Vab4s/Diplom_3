@@ -1,0 +1,1 @@
+ORDERS_TEXT = ('xpath', '//h1[text()="Лента заказов"]')
