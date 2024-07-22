@@ -27,7 +27,6 @@ class TestMainFunctionality:
     def test_click_orders_button(self, driver):
         main_page = MainPage(driver)
         main_page.get_main_page()
-        # main_page.check_main_page_load()
         main_page.click_orders_menu()
 
         orders_page = OrdersPage(driver)

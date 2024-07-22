@@ -37,7 +37,6 @@ class LoginPage(BasePage):
         self.fill_password(password)
         self.click_enter_button()
 
-
     @allure.step('Проверка активности поля password')
     def check_password_field_is_active(self):
         self.check_input_field_is_active(DIV_PASSWORD)

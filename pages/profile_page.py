@@ -6,7 +6,7 @@ from locators.profile_page_locators import *
 
 class ProfilePage(BasePage):
 
-    @allure.step('Проверка загрузки страницы профиля')
+    @allure.step('Загрузка страницы профиля')
     def wait_profile_page_load(self):
         self.wait_url_loading(BUTTON_PROFILE_SAVE)
 

@@ -19,7 +19,6 @@ class TestAccount:
     def test_click_account_button_without_authorization(self, driver):
         main_page = MainPage(driver)
         main_page.get_main_page()
-        # main_page.check_main_page_load()
         main_page.click_account_menu()
 
         login_page = LoginPage(driver)
@@ -32,7 +31,6 @@ class TestAccount:
         login_page.fill_data_and_login(self.email, self.password)
 
         main_page = MainPage(driver)
-        # main_page.check_main_page_load()
         main_page.wait_main_page_load()
         main_page.click_account_menu()
 
@@ -46,12 +44,10 @@ class TestAccount:
         login_page.fill_data_and_login(self.email, self.password)
 
         main_page = MainPage(driver)
-        # main_page.check_main_page_load()
         main_page.wait_main_page_load()
         main_page.click_account_menu()
 
         profile_page = ProfilePage(driver)
-        # profile_page.check_profile_page_load()
         profile_page.wait_profile_page_load()
         profile_page.click_orders_history()
 
@@ -65,12 +61,10 @@ class TestAccount:
         login_page.fill_data_and_login(self.email, self.password)
 
         main_page = MainPage(driver)
-        # main_page.check_main_page_load()
         main_page.wait_main_page_load()
         main_page.click_account_menu()
 
         profile_page = ProfilePage(driver)
-        # profile_page.check_profile_page_load()
         profile_page.wait_profile_page_load()
         profile_page.click_exit()
 

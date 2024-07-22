@@ -1,5 +1,3 @@
-import time
-
 import allure
 
 from helpers.random_ingredient import random_ingredient, random_ingredient_and_counter
@@ -14,19 +12,20 @@ class MainPage(BasePage):
     def get_main_page(self):
         self.get_url(MAIN_PAGE, SECTION_CREATE_BURGER)
 
-
-
-    @allure.step('Проверка загрузки главной страницы')
+    @allure.step('Загрузка главной страницы')
     def wait_main_page_load(self):
         self.wait_url_loading(SECTION_CREATE_BURGER)
 
+    @allure.step('Нажать на кнопку сделать азказ')
     def click_make_order_button(self):
         self.click_on_element(BUTTON_MAKE_ORDER)
 
+    @allure.step('Нажать на ингредиент')
     def click_random_ingredient(self):
         ingredient = random_ingredient()
         self.click_on_element(ingredient)
 
+    @allure.step('Закрыть модальное окно')
     def click_modal_close_button(self):
         self.click_on_element(BUTTON_MODAL_CLOSE)
 
@@ -34,29 +33,19 @@ class MainPage(BasePage):
     def check_main_page_load(self):
         self.check_url_loaded(MAIN_PAGE, SECTION_CREATE_BURGER)
 
+    @allure.step('Проверка появления окна заказа')
     def check_order_window_appears(self):
         self.check_element_existence(MODAL_SECTION_ORDER)
 
-
-
-
-
+    @allure.step('Проверка появления окна ингредиента')
     def check_modal_section_appears(self):
         self.check_element_with_parameter_existence(MODAL_SECTION_INGREDIENT, 'class', 'Modal_modal_opened__3ISw4')
 
+    @allure.step('Проверка закрытия модального окна')
     def check_modal_section_disappears(self):
         self.check_element_unexistence(MODAL_SECTION_INGREDIENT)
 
-    def create_order(self):
-        source = random_ingredient()
-        SOURCE = self.driver.find_element(*source)
-        TARGET = self.driver.find_element(*CONSTRUCTOR_AREA)
-        self.scroll_to_element(SOURCE)
-        self.drug_and_drop_element(SOURCE, TARGET)
-        self.click_make_order_button()
-        self.check_element_existence(('xpath', '//img[@src="./static/media/tick.887b83be.gif"]'))
-
-
+    @allure.step('Проверка счётчика ингредиента')
     def check_ingredient_counter(self):
         source, counter = random_ingredient_and_counter()
         SOURCE = self.driver.find_element(*source)

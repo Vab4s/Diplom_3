@@ -19,13 +19,10 @@ class BasePage:
         self.driver.get(url)
         self.wait_url_loading(element)
 
+    @allure.step('Ожидание загрузки')
     def wait_url_loading(self, element):
         self.wait.until(expected_conditions.invisibility_of_element_located(LOADING_GIF))  # Завершение анимации
         self.wait.until(expected_conditions.visibility_of_element_located(element))
-
-
-
-
 
     @allure.step('Клик на элементе')
     def click_on_element(self, element):
@@ -59,15 +56,6 @@ class BasePage:
     @allure.step('Клик а пункт меню Личный кабинет')
     def click_account_menu(self):
         self.click_on_element(BUTTON_ACCOUNT)
-
-
-
-
-
-
-
-
-
 
     @allure.step('Проверка загрузки страницы')
     def check_url_loaded(self, url, element):  # element - элемент страницы, который должен быть загружен

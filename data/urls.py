@@ -4,4 +4,4 @@ RESTORE_PASSWORD_PAGE = 'https://stellarburgers.nomoreparties.site/forgot-passwo
 RESET_PASSWORD_PAGE = 'https://stellarburgers.nomoreparties.site/reset-password'
 PROFILE_PAGE = 'https://stellarburgers.nomoreparties.site/account/profile'
 ORDER_HISTORY_PAGE = 'https://stellarburgers.nomoreparties.site/account/order-history'
-ORDERS_PAGE = 'https://stellarburgers.nomoreparties.site/feed'
+FEED_PAGE = 'https://stellarburgers.nomoreparties.site/feed'

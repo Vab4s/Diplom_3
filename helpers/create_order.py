@@ -11,6 +11,7 @@ def create_order_list():
     return {"ingredients": burger}
 
 
+@allure.step('Запрос создания заказа')
 def send_create_order_post_request(access_token):
     payload = create_order_list()
     order_response = requests.post('https://stellarburgers.nomoreparties.site/api/orders', data=payload, headers={"Authorization": access_token})
