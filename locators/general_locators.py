@@ -1,0 +1,5 @@
+LOADING_GIF = ('xpath', '//img[@class="Modal_modal__loading__3534A"]')
+BUTTON_VISIBLE_PASSWORD = ('xpath', '//div[contains(@class, "input_type_password")]//*[name()="svg"]')
+DIV_PASSWORD = ('xpath', '//label[text()="Пароль"]//parent::div')
+INPUT_PASSWORD = ('xpath', '//input[@name="Пароль"]')
+INPUT_EMAIL = ('xpath', '//input[@name="name"]')
