@@ -6,6 +6,7 @@ from pages.main_page import MainPage
 from pages.login_page import LoginPage
 from pages.orders_page import OrdersPage
 
+
 class TestMainFunctionality:
     @classmethod
     def setup_class(cls):
@@ -13,6 +14,7 @@ class TestMainFunctionality:
         cls.email, cls.password, cls.name = cls.user_data
         cls.access_token = cls.response_text['accessToken']
 
+    @allure.title('Переход по клику на "Конструктор"')
     def test_click_constructor_button(self, driver):
         login_page = LoginPage(driver)
         login_page.get_login_page()
@@ -21,20 +23,24 @@ class TestMainFunctionality:
         main_page = MainPage(driver)
         main_page.check_main_page_load()
 
+    @allure.title('Переход по клику на "Лента заказов"')
     def test_click_orders_button(self, driver):
         main_page = MainPage(driver)
         main_page.get_main_page()
+        # main_page.check_main_page_load()
         main_page.click_orders_menu()
 
         orders_page = OrdersPage(driver)
         orders_page.check_orders_page_load()
 
+    @allure.title('Клик на ингредиент')
     def test_click_ingredient(self, driver):
         main_page = MainPage(driver)
         main_page.get_main_page()
         main_page.click_random_ingredient()
         main_page.check_modal_section_appears()
 
+    @allure.title('Клик на кнопку "закрыть" модального окна')
     def test_close_modal_window(self, driver):
         main_page = MainPage(driver)
         main_page.get_main_page()
@@ -42,18 +48,20 @@ class TestMainFunctionality:
         main_page.click_modal_close_button()
         main_page.check_modal_section_disappears()
 
-    def test_counter_ingredients_increase(self, driver):
-        main_page = MainPage(driver)
+    @allure.title('Увеличение счётчика ингредиента при его добавлении')
+    def test_counter_ingredients_increase(self, driver_chrome):
+        main_page = MainPage(driver_chrome)
         main_page.get_main_page()
         main_page.check_ingredient_counter()
 
+    @allure.title('Возможность сделать заказ авторизированному пользователю')
     def test_authorized_user_can_make_order(self, driver):
         login_page = LoginPage(driver)
         login_page.get_login_page()
         login_page.fill_data_and_login(self.email, self.password)
 
         main_page = MainPage(driver)
-        main_page.check_main_page_load()
+        main_page.wait_main_page_load()
         main_page.click_make_order_button()
         main_page.check_order_window_appears()
 

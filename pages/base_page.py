@@ -17,34 +17,23 @@ class BasePage:
     @allure.step(f'Переход на страницу')
     def get_url(self, url, element):
         self.driver.get(url)
-        self.wait.until(expected_conditions.invisibility_of_element_located(LOADING_GIF))   # Завершение анимации
+        self.wait_url_loading(element)
+
+    def wait_url_loading(self, element):
+        self.wait.until(expected_conditions.invisibility_of_element_located(LOADING_GIF))  # Завершение анимации
         self.wait.until(expected_conditions.visibility_of_element_located(element))
 
-    @allure.step('Проверка загрузки страницы')
-    def check_url_loaded(self, url, element):   # element - эдемент страницы, который должен быть загружен
-        self.wait.until(expected_conditions.invisibility_of_element_located(LOADING_GIF))   # Завершение анимации
-        self.wait.until(expected_conditions.visibility_of_element_located(element))
-        assert (self.driver.current_url == url and self.driver.find_element(*element))
 
-    @allure.step('Существование эдемента с определённым значением параметра')
-    def check_element_with_parameter_existence(self, element, attribute, parameter):
-        assert parameter in self.wait.until(expected_conditions.visibility_of_element_located(element)).get_attribute(attribute)
 
-    @allure.step('Существование элемента')
-    def check_element_existence(self, element):
-        assert self.wait.until(expected_conditions.visibility_of_element_located(element))
 
-    @allure.step('Несуществование элемента')
-    def check_element_unexistence(self, element):
-        assert self.wait.until(expected_conditions.invisibility_of_element_located(element))
-
-    @allure.step('Скролл до элемента')
-    def scroll_to_element(self, element):
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Клик на элементе')
     def click_on_element(self, element):
         self.wait.until(expected_conditions.element_to_be_clickable(element)).click()
+
+    @allure.step('Скролл до элемента')
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Перетаскивание элемента')
     def drug_and_drop_element(self, source, target):
@@ -53,12 +42,6 @@ class BasePage:
     @allure.step('Ввод данных в поле input')
     def fill_input_field(self, element, text):
         self.wait.until(expected_conditions.visibility_of_element_located(element)).send_keys(text)
-
-    @allure.step('Проверка того, что поле input активно')
-    def check_input_field_is_active(self, element):
-        assert 'input_status_active' in self.driver.find_element(*element).get_attribute('class')
-
-
 
     # Nav-меню
     @allure.step('Клик а пункт меню Конструктор')
@@ -76,3 +59,33 @@ class BasePage:
     @allure.step('Клик а пункт меню Личный кабинет')
     def click_account_menu(self):
         self.click_on_element(BUTTON_ACCOUNT)
+
+
+
+
+
+
+
+
+
+
+    @allure.step('Проверка загрузки страницы')
+    def check_url_loaded(self, url, element):  # element - элемент страницы, который должен быть загружен
+        self.wait_url_loading(element)
+        assert (self.driver.current_url == url and self.driver.find_element(*element))
+
+    @allure.step('Проверка существования элемента с определённым значением параметра')
+    def check_element_with_parameter_existence(self, element, attribute, parameter):
+        assert parameter in self.wait.until(expected_conditions.visibility_of_element_located(element)).get_attribute(attribute)
+
+    @allure.step('Проверка существования элемента')
+    def check_element_existence(self, element):
+        assert self.wait.until(expected_conditions.visibility_of_element_located(element))
+
+    @allure.step('Проверка несуществования элемента')
+    def check_element_unexistence(self, element):
+        assert self.wait.until(expected_conditions.invisibility_of_element_located(element))
+
+    @allure.step('Проверка того, что поле input активно')
+    def check_input_field_is_active(self, element):
+        assert 'input_status_active' in self.driver.find_element(*element).get_attribute('class')

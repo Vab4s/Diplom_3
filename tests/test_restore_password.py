@@ -18,7 +18,7 @@ class TestRestorePassword:
         restore_pass_page.check_restore_pass_page_load()
 
     @pytest.mark.parametrize('email', ['qweqwe@qweqwe.qwe'])
-    @allure.title('Проверка перехода на страницу восстановления при нажатии на "Восстановить пароль"')
+    @allure.title('Ввод почты и клик по кнопке «Восстановить»')
     def test_enter_mail_and_click_restore(self, driver, email):
         restore_pass_page = RestorePassPage(driver)
         restore_pass_page.get_restore_pass_page()
@@ -28,6 +28,7 @@ class TestRestorePassword:
         reset_pass_page = ResetPassPage(driver)
         reset_pass_page.check_reset_pass_page_load()
 
+    @allure.title('Клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его')
     def test_password_field_active_after_visible_button_click(self, driver):
         login_page = LoginPage(driver)
         login_page.get_login_page()

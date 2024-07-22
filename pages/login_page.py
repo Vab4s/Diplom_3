@@ -19,15 +19,7 @@ class LoginPage(BasePage):
     def click_visibe_button(self):
         self.click_on_element(BUTTON_VISIBLE_PASSWORD)
 
-    @allure.step('Проверка активности поля password')
-    def check_password_field_is_active(self):
-        self.check_input_field_is_active(DIV_PASSWORD)
-
-    @allure.step('Проверка загрузки страницы хода в аккаунт')
-    def check_login_page_load(self):
-        self.check_url_loaded(LOGIN_PAGE, DIV_PASSWORD)
-
-    @allure.step('Заполнение поля mail')
+    @allure.step('Заполнение поля email')
     def fill_email(self, email):
         self.fill_input_field(INPUT_EMAIL, email)
 
@@ -44,6 +36,15 @@ class LoginPage(BasePage):
         self.fill_email(email)
         self.fill_password(password)
         self.click_enter_button()
+
+
+    @allure.step('Проверка активности поля password')
+    def check_password_field_is_active(self):
+        self.check_input_field_is_active(DIV_PASSWORD)
+
+    @allure.step('Проверка загрузки страницы хода в аккаунт')
+    def check_login_page_load(self):
+        self.check_url_loaded(LOGIN_PAGE, DIV_PASSWORD)
 
 
 
